@@ -37,6 +37,14 @@ Returns:
 }
 ```
 
+## Dev
+
+To start the dev server:
+```bash
+grunt server
+```
+It will watch your files and it will restart the server when they change
+
 ## Deploy
 
 1. Remote repo

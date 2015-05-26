@@ -6,7 +6,7 @@ var fs = require("fs");
 var pkg = JSON.parse(fs.readFileSync('./package.json'));
 
 // CORS support for cross domain ajax calls and json request body parsing
-app.use(cors(),bodyParser.json());
+app.use(cors(), bodyParser.json());
 
 // Basic info about this service
 app.get("/", function(req, res) {
@@ -14,17 +14,16 @@ app.get("/", function(req, res) {
 		name: pkg.name,
 		version: pkg.version,
 		description: pkg.description,
-		repository: pkg.repository.url 
+		repository: pkg.repository.url
 	});
 });
 
 // Starting the app on port 5000
-app.listen(5000,function(){
+app.listen(5000, function() {
 	console.log({
 		name: pkg.name,
 		version: pkg.version,
 		description: pkg.description,
-		repository: pkg.repository.url,
-		yo : "yo"
+		repository: pkg.repository.url
 	});
 });
