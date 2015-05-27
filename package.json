@@ -11,7 +11,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "./node_modules/forever/bin/forever index.js"
 	},
-	"author": "Kriek <hello@kriek.co.uk>",
+	"author": "kriek <hello@kriek.co.uk>",
 	"license": "ISC",
 	"dependencies": {
 		"body-parser": "^1.12.4",
