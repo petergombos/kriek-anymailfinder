@@ -18,6 +18,11 @@ app.get("/", function(req, res) {
 	});
 });
 
+// To all other requests
+app.all("*", function(req, res) {
+	res.status(404).send({ error : "Endpoint not found"});
+});
+
 // Starting the app on port 5000
 app.listen(5000, function() {
 	console.log({
