@@ -1,0 +1,9 @@
+FROM kriek/buildstep
+MAINTAINER kriek <hello@kriek.co.uk>
+
+# RUN apt-get update -y
+# RUN apt-get install -y libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+
+EXPOSE 5000
+VOLUME ["/app/data"]
+CMD ["/start","web"]

@@ -39,7 +39,7 @@ Returns:
 
 ## Dev
 
-To start the dev server:
+1. To start the dev server:
 ```bash
 grunt server
 ```
@@ -47,13 +47,41 @@ It will watch your files and it will restart the server when they change
 
 ## Deploy
 
-1. Remote repo
+### Push to deploy setup
 ```bash
 git remote add dokku dokku@dokku.kriek.io:[app_namespace]
+git push dokku master
 ```
+To have a custom system env, just put a Dockerfile into the project root and you are ready to go. Up on push deploy, your newly created docker image will be used as a base for your app. 
+(An example of this file can be found in the root) 
 
-2. Adding persistent data volume (on the server over SSH) [optional]
+### Adding persistent data volume (on the server over SSH) [optional]
 ```bash
 dokku volume:create volume_name /home/dokku/.datastore/volume:/app/data
 dokku volume:link app_namespace volume_name
+```
+
+### Adding mondogdb to the app (on the server over SSH) [optional]
+Create a MongoDB database
+```bash
+dokku mongodb:create <db>
+-----> MongoDB database created: <db>                          
+```
+Link database to app
+```bash
+dokku mongodb:link <app> <db>
+{
+	"user" : "<app>",
+	"pwd" : "aef1b375b32fb4f2b5d25ff0cff5d57a",
+	"roles" : [
+		"readWrite"
+	],
+	"_id" : ObjectId("55658dad69058f162be7e28a")
+}
+```
+To access the db use the ENV var "MONGODB_URL" or via dokku config:
+```bash
+dokku config <app>
+=== <app> config vars ===
+MONGODB_URL:  mongodb://<app>:EsPUFKfjI8ORkev6@mongodb:27017/<db>
 ```
