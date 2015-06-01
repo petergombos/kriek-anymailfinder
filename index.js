@@ -7,7 +7,9 @@ var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var authorization = require("./lib/authorization.js");
 
 // CORS support for cross domain ajax calls and json request body parsing
-app.use(cors(), bodyParser.json(), authorization());
+app.use(cors(), bodyParser.json(), function(err,req,res,next){
+	res.status(400).send({error: "Invalid JSON in request body"});
+},authorization());
 
 // Basic info about this service
 app.get("/", function(req, res) {
