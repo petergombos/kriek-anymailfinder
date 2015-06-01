@@ -4,9 +4,10 @@ var bodyParser = require('body-parser');
 var cors = require("cors");
 var fs = require("fs");
 var pkg = JSON.parse(fs.readFileSync('./package.json'));
+var authorization = require("./lib/authorization.js");
 
 // CORS support for cross domain ajax calls and json request body parsing
-app.use(cors(), bodyParser.json());
+app.use(cors(), bodyParser.json(), authorization());
 
 // Basic info about this service
 app.get("/", function(req, res) {
@@ -19,7 +20,7 @@ app.get("/", function(req, res) {
 });
 
 // To all other requests
-app.all("*", function(req, res) {
+app.all("*", function(req, res, next) {
 	res.status(404).send({ error : "Endpoint not found"});
 });
 
@@ -32,3 +33,4 @@ app.listen(5000, function() {
 		repository: pkg.repository.url
 	});
 });
+

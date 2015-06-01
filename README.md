@@ -85,3 +85,7 @@ dokku config <app>
 === <app> config vars ===
 MONGODB_URL:  mongodb://<app>:EsPUFKfjI8ORkev6@mongodb:27017/<db>
 ```
+
+## Authorization
+The template comes with an authorization middleware. Users are issued tokens by various services, but all services must be registered at [http://cantrip.kriek.io/rs256](http://cantrip.kriek.io/rs256).
+The middleware is included by default. After it runs, an authorization property is available on the request object. It holds the requests's token, the data included in the token and whether the token was verified.
