@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>Email Finder</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('button').click(function(){
+			var name = $('.name').val();
+			var domain = $('.domain').val();
+			if(!name || !domain){
+				return;
+			}
+			$('.addresses').html("Loading...");
+			findAddresses(name,domain);
+		});
+	});
+
+	function findAddresses(name, domain){
+		var data = {
+				name : name,
+				domain : domain
+		};
+		
+		$.ajax({
+			url : "/api",
+			type: "POST",
+			contentType : "application/json",
+			dataType : 'json',
+			data : JSON.stringify(data),
+			success : function(response){
+				$('.addresses').html(JSON.stringify(response));
+			}
+		});
+	}
+</script>
+<body>
+	<input placeholder="name" class="name">
+	<input placeholder="domain" class="domain">
+	<button>Find!</button>
+	<div class="addresses"></div>
+</body>
+</html>
