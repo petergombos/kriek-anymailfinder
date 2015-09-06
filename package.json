@@ -23,7 +23,8 @@
     "jsonwebtoken": "^5.0.1",
     "lodash": "^3.9.3",
     "promise": "^7.0.1",
-    "request": "^2.57.0"
+    "request": "^2.57.0",
+    "email-finder" : "git+https://github.com/petergombos/email-finder.git"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
