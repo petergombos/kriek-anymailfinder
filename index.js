@@ -13,7 +13,11 @@ app.use(cors(), bodyParser.json(), function(err,req,res,next){
 app.use('/',express.static('public'));
 
 app.post('/api',function(req,res){
-	emailFinder(req.body.name,req.body.domain,function(err, validAddresses){
+	var options = {
+		fqdn : "kriekapps.com",
+		from_email : "info@kriekapps.com"
+	}
+	emailFinder(req.body.name,req.body.domain,options,function(err, validAddresses){
 		if(err){
 			return res.send(err);
 		}
