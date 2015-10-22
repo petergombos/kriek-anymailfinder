@@ -15,7 +15,8 @@ app.use('/',express.static('public'));
 app.post('/api',function(req,res){
 	var options = {
 		fqdn : "kriekapps.com",
-		from_email : "info@kriekapps.com"
+		from_email : "info@kriekapps.com",
+		timeout : 30000
 	}
 	emailFinder(req.body.name,req.body.domain,options,function(err, validAddresses){
 		if(err){
