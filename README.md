@@ -1,4 +1,4 @@
-Microservice
+AnymailFinder
 ============
 
 Version 0.1.0
@@ -18,7 +18,25 @@ Parameters you'll need to pass in the request object:
 }
 ```
 
-Returns:
+Returns an object
 ```json
-["john@example.com"]
+{
+	"id" : "hashID",
+	"status" : "pending",
+	"created_time" : new Date()
+}
 ```
+
+### GET /api/:job_id
+
+Get the results for a job.
+
+Returns an object
+```json
+{
+	"id" : "hashID",
+	"status" : "complete",
+	"createdTime" : "Time",
+	"resolved_time" : "Time",
+	"result" : ["john@example.com"]
+}

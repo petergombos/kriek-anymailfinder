@@ -11,6 +11,7 @@
 			if(!name || !domain){
 				return;
 			}
+			$('button').attr('disabled','disabled');
 			$('.addresses').html("Loading...");
 			findAddresses(name,domain);
 		});
@@ -29,7 +30,31 @@
 			dataType : 'json',
 			data : JSON.stringify(data),
 			success : function(response){
-				$('.addresses').html(JSON.stringify(response));
+				if(response.response){
+					$('button').removeAttr('disabled');
+					$('.addresses').html(JSON.stringify(response.response));
+				} else {
+					reCheck(response.id);
+				}
+			}
+		});
+	}
+
+	function reCheck(id){
+		$.ajax({
+			url : "/api/" + id,
+			type: "GET",
+			contentType : "application/json",
+			dataType : 'json',
+			success : function(response){
+				if(response.response){
+					$('button').removeAttr('disabled');
+					$('.addresses').html(JSON.stringify(response.response));
+				} else {
+					setTimeout(function(){
+						reCheck(id);
+					},1000);
+				}
 			}
 		});
 	}
