@@ -37,7 +37,7 @@ app.post('/api',function(req,res){
 	var options = {
 		fqdn : "kriekapps.com",
 		from_email : "info@kriekapps.com",
-		timeout : 5000,
+		timeout : 15000,
 		debug : true
 	}
 
