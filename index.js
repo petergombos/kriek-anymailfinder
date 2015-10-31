@@ -25,14 +25,6 @@ app.use('/',express.static('public'));
 var jobs = [];
 
 
-function job(jobId){
-	return {
-		id : jobId,
-		status : 'pending',
-		created_time : new Date()
-	}
-}
-
 app.post('/api',function(req,res){
 	
 	var options = {
@@ -50,7 +42,16 @@ app.post('/api',function(req,res){
 
 	} else {
 		
-		jobs[jobId] = job(jobId);
+		jobs[jobId] = {
+			id : jobId,
+			status : 'pending',
+			request : {
+				name : req.body.name,
+				domain : req.body.domain
+			},
+			created_time : new Date()
+		}
+
 		res.send(jobs[jobId]);
 
 		emailFinder(req.body.name,req.body.domain,options,function(err, validAddresses){
@@ -80,6 +81,6 @@ app.get('/api/:id', function(req,res){
 });
 
 // Starting the app on port 5000
-app.listen(5000, function() {
+app.listen(7000, function() {
 	console.log('running');
 });
