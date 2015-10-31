@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require("cors");
 var emailFinder = require('email-finder');
 var crypto = require('crypto');
+var _ = require('lodash');
 
 
 function sha1(string){
@@ -43,7 +44,7 @@ app.post('/api',function(req,res){
 
 	var jobId = sha1(req.body.name+req.body.domain);
 	
-	if(jobs[jobId] && jobs[jobId].response.code !== 704){
+	if(jobs[jobId] && (_.isArray(jobs[jobId].response) || jobs[jobId].response.code !== 705)){
 
 		res.send(jobs[jobId]);
 
