@@ -43,7 +43,7 @@ app.post('/api',function(req,res){
 
 	var jobId = sha1(req.body.name+req.body.domain);
 	
-	if(jobs[jobId]){
+	if(jobs[jobId] && jobs[jobId].response.code !== 704){
 
 		res.send(jobs[jobId]);
 
