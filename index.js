@@ -81,6 +81,6 @@ app.get('/api/:id', function(req,res){
 });
 
 // Starting the app on port 5000
-app.listen(7000, function() {
+app.listen(5000, function() {
 	console.log('running');
 });
